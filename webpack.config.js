@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -7,6 +8,7 @@ module.exports = {
     entry: {
         index: './src/index.js',
         base: './src/base.js',
+        // jquery: 'jquery'
     },
     // 出口 默认 './dist'
     output: {
@@ -39,6 +41,10 @@ module.exports = {
             minify: {
                 removeAttributeQuotes: true // 去掉属性的引号，防 xss 攻击？
             }
+        }),
+        // 不需要引入第三方包，可以直接使用
+        new webpack.ProvidePlugin({
+            $: 'jquery'
         })
     ],
     devServer: {

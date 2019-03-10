@@ -1,1 +1,2 @@
-document.getElementById('base').innerHTML = 'wang';
+// document.getElementById('base').innerHTML = 'wang';
+$('#base').html('$ wang');
