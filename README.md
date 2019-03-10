@@ -195,23 +195,39 @@
         - 用于解析 html 文件，并替换其中的 img 地址
         - 还跟 HtmlWebpackPlugin 冲突了，将 <%= xx %> 解析成了字符串，不要用了
 
-## 1.8 css 预处理
+## 1.8 css 预处理、后处理
 
-- 安装
-    ```base
-    $ npm i less less-loader node-sass sass-loader -D
-    ```
-- 配置
-    ```javascript
-    module: {
-        rules: [
-            {
-                test: /\.less$/,
-                loader: ["style-loader", "css-loader", "less-loader"]
-            },
-        ]
-    },
-    ```
+- 预处理
+    - 安装
+        ```base
+        $ npm i less less-loader node-sass sass-loader -D
+        ```
+    - 配置
+        ```javascript
+        module: {
+            rules: [
+                {
+                    test: /\.less$/,
+                    loader: ["style-loader", "css-loader", "less-loader"]
+                },
+            ]
+        },
+        ```
+- 后处理
+    - 安装
+        ```base
+        $ npm i postcss-loader autoprefixer -D
+        ```
+    - 配置
+        ```javascript
+        loader: ["style-loader", "css-loader", "postcss-loader"]
+        ```
+        ```javascript
+        // postcss.config.js
+        module.exports = {
+            plugins: [require('autoprefixer')]
+        };
+        ```
 
 ## 1.9 提取 css 文件
 

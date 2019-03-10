@@ -32,7 +32,7 @@ module.exports = {
                 // loader: ["style-loader", "css-loader"]
                 // extract-text-webpack-plugin 插件需要首先用 css-loader 处理 css 文件
                 loader: cssExtract.extract({
-                    use: ["css-loader"]
+                    use: ["css-loader", "postcss-loader"]
                 })
             },
             {
