@@ -20,6 +20,11 @@
   "homepage": "https://github.com/MoonWang/webpack-demo#readme",
   "devDependencies": {
     "autoprefixer": "^9.4.10",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "clean-webpack-plugin": "^2.0.0",
     "css-loader": "^2.1.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",

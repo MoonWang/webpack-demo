@@ -259,3 +259,24 @@
     ```
 - 问题
     - css 文件中的图片路径存在问题，待解决
+
+## 1.10 转义 ES6/ES7/JSX 
+
+- 安装
+    ```base
+    $ npm i babel-loader babel-core babel-preset-env babel-preset-stage-0 babel-preset-react -D
+    ```
+    - 报错： Cannot find module '@babel/core' 
+    - 说明：官方默认 babel-loader | babel 对应的版本需要一致，即 babel-loader 需要搭配最新版本 babel
+    - 解决：
+        - 回退低版本 
+            - npm install -D babel-loader@7 babel-core babel-preset-env babel-preset-stage-0 babel-preset-react
+            - 报错：Couldn't find preset "@babel/preset-env" relative to directory "webpack/node_modules/css-loader"
+            - 解决：先暂时注释掉 css 文件的引入 TODO 为什么？
+        - 升级高版本 
+            - npm install -D babel-loader @babel/core @babel/preset-env @babel/preset-stage-0 @babel/preset-react
+            - 对应的 presets 参数也要修改成 '@babel/react' ，比较繁琐，还是先回退低版本处理
+- 配置
+    ```javascript
+
+    ```

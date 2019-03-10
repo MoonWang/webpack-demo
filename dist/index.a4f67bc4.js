@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/babelTest.js":
+/*!**************************!*\
+  !*** ./src/babelTest.js ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = text = \"babel-text\";\n\n//# sourceURL=webpack:///./src/babelTest.js?");
+
+/***/ }),
+
 /***/ "./src/images/color.png":
 /*!******************************!*\
   !*** ./src/images/color.png ***!
@@ -97,17 +109,6 @@ eval("module.exports = __webpack_require__.p + \"images/657ac153457e7419a92a2c27
 
 /***/ }),
 
-/***/ "./src/index.css":
-/*!***********************!*\
-  !*** ./src/index.css ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./src/index.css?");
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -115,29 +116,8 @@ eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./sr
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("console.log('hello webpack');\n\n// document.getElementById('app').innerHTML = 'moon';\n// $('#app').html('$ moon');\n\n__webpack_require__(/*! ./index.css */ \"./src/index.css\");\n\nlet src = __webpack_require__(/*! ./images/color.png */ \"./src/images/color.png\");\nlet img = new Image();\nimg.src = src;\ndocument.body.appendChild(img);\n\n\n__webpack_require__(/*! ./less.less */ \"./src/less.less\");\n__webpack_require__(/*! ./sass.scss */ \"./src/sass.scss\");\n\n//# sourceURL=webpack:///./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/less.less":
-/*!***********************!*\
-  !*** ./src/less.less ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./src/less.less?");
-
-/***/ }),
-
-/***/ "./src/sass.scss":
-/*!***********************!*\
-  !*** ./src/sass.scss ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./src/sass.scss?");
+"use strict";
+eval("\n\nvar _babelTest = __webpack_require__(/*! ./babelTest */ \"./src/babelTest.js\");\n\nvar _babelTest2 = _interopRequireDefault(_babelTest);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nconsole.log('hello webpack');\n\n// document.getElementById('app').innerHTML = 'moon';\n// $('#app').html('$ moon');\n\n// require('./index.css');\n\nvar src = __webpack_require__(/*! ./images/color.png */ \"./src/images/color.png\");\nvar img = new Image();\nimg.src = src;\ndocument.body.appendChild(img);\n\n// require('./less.less');\n// require('./sass.scss');\n\nconsole.log(_babelTest2.default);\n\nvar getText = function getText() {\n  return _babelTest2.default;\n};\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

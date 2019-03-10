@@ -91,9 +91,10 @@
   !*** ./src/base.js ***!
   \*********************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("// document.getElementById('base').innerHTML = 'wang';\n$('#base').html('$ wang');\n\n//# sourceURL=webpack:///./src/base.js?");
+"use strict";
+eval("\n\n// document.getElementById('base').innerHTML = 'wang';\n$('#base').html('$ wang');\n\n//# sourceURL=webpack:///./src/base.js?");
 
 /***/ })
 

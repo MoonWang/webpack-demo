@@ -65,6 +65,15 @@ module.exports = {
                     use: ["css-loader", "sass-loader"]
                 })
             },
+            {
+                test: /\.jsx?$/,
+                use: {
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ["env", "stage-0", "react"]
+                    }
+                }
+            }
         ]
     },
     plugins: [
