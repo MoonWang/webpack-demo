@@ -11,7 +11,14 @@ module.exports = {
         filename: 'bundle.js'
     },
     module: {
-
+        rules: [
+            {
+                // 匹配需要当前 loader 处理的文件
+                test: /\.css$/,
+                // 使用的 loader 
+                loader: ["style-loader", "css-loader"]
+            }
+        ]
     },
     plugins: [
 

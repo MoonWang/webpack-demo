@@ -71,3 +71,27 @@
     })
 });
 ```
+
+## 1.2 使用 loader 
+
+> 加载非 js 模块文件时，需要使用 loader 对其进行转换
+
+- 安装
+    ```bash
+    $ npm i style-loader css-loader -D
+    ```
+- 配置
+    ```javascript
+    module: {
+        rules: [
+            {
+                // 匹配需要当前 loader 处理的文件
+                test: /\.css$/,
+                // 使用的 loader ，多个 loader 有执行顺序要求，为从右向左
+                // css-loader 解析处理 css 文件中的 url 路径，并把 css 文件变成一个模块
+                // style-loader 把 css 文件变成 style 标签插入 
+                loader: ["style-loader", "css-loader"]
+            }
+        ]
+    },
+    ```
