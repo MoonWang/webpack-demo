@@ -25,7 +25,23 @@ module.exports = {
                 test: /\.css$/,
                 // 使用的 loader 
                 loader: ["style-loader", "css-loader"]
-            }
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|bmp)$/,
+                // use: 'file-loader'
+                use: {
+                    // loader: 'file-loader',
+                    loader: 'url-loader',
+                    options: {
+                        outputPath: 'images/',
+                        limit: 10 * 1024
+                    }
+                }
+            },
+            // {
+            //     test: /\.(html|htm)$/,
+            //     use: 'html-withimg-loader'
+            // }
         ]
     },
     plugins: [
@@ -43,9 +59,9 @@ module.exports = {
             }
         }),
         // 不需要引入第三方包，可以直接使用
-        new webpack.ProvidePlugin({
-            $: 'jquery'
-        })
+        // new webpack.ProvidePlugin({
+        //     $: 'jquery'
+        // }),
     ],
     devServer: {
         contentBase: './dist',

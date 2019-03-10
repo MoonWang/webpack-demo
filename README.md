@@ -175,3 +175,22 @@
     - 增加一个 entry 入口，增加一个 HtmlWebpackPlugin 中的 chunks
     - 但是 $ 无法跨模块引用，会报错
     - 可以考虑将 $ 暴露到全局，expose-loader
+
+## 1.7 使用图片
+
+- 安装
+    ```base
+    $ npm i file-loader url-loader -D
+    $ npm i html-withimg-loader -D
+    ```
+- 说明
+    - file-loader 
+        - 用于解析图片地址(任意二进制文件)，把图片从源位置拷贝到目标位置并且修改原引用地址
+            - css 中、js 中都可以使用
+        - 默认是拷贝到 output.path 下，可以通过设置 outputPath 参数指定目标路径
+    - url-loader
+        - 将文件转成 base64 字符串嵌入(默认全部转换)
+        - 如果需要通过路径引用较大图片，设置 limit 参数即可
+    - html-withimg-loader(非常用)
+        - 用于解析 html 文件，并替换其中的 img 地址
+        - 还跟 HtmlWebpackPlugin 冲突了，将 <%= xx %> 解析成了字符串，不要用了
