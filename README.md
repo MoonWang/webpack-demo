@@ -212,3 +212,34 @@
         ]
     },
     ```
+
+## 1.9 提取 css 文件
+
+- 安装
+    - 该插件不支持 v4 需要用 next 版本
+    ```base
+    $ npm i extract-text-webpack-plugin@next -D
+    ```
+- 配置
+    ```javascript
+    const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+    let cssExtract = new ExtractTextWebpackPlugin('css/css.css');
+    module.exports = {
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    // extract-text-webpack-plugin 插件需要首先用 css-loader 处理 css 文件
+                    loader: cssExtract.extract({
+                        use: ["css-loader"]
+                    })
+                },
+            ]
+        },
+        plugins: [
+            cssExtract
+        ],
+    };
+    ```
+- 问题
+    - css 文件中的图片路径存在问题，待解决

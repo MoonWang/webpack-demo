@@ -2,6 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+
+let cssExtract = new ExtractTextWebpackPlugin('css/css.css');
+let lessExtract = new ExtractTextWebpackPlugin('css/less.css');
+let sassExtract = new ExtractTextWebpackPlugin('css/sass.css');
 
 module.exports = {
     // 入口 默认 './src'
@@ -24,7 +29,11 @@ module.exports = {
                 // 匹配需要当前 loader 处理的文件
                 test: /\.css$/,
                 // 使用的 loader 
-                loader: ["style-loader", "css-loader"]
+                // loader: ["style-loader", "css-loader"]
+                // extract-text-webpack-plugin 插件需要首先用 css-loader 处理 css 文件
+                loader: cssExtract.extract({
+                    use: ["css-loader"]
+                })
             },
             {
                 test: /\.(png|jpg|jpeg|gif|svg|bmp)$/,
@@ -44,11 +53,17 @@ module.exports = {
             // },
             {
                 test: /\.less$/,
-                loader: ["style-loader", "css-loader", "less-loader"]
+                // loader: ["style-loader", "css-loader", "less-loader"]
+                loader: lessExtract.extract({
+                    use: ["css-loader", "less-loader"]
+                })
             },
             {
                 test: /\.scss$/,
-                loader: ["style-loader", "css-loader", "sass-loader"]
+                // loader: ["style-loader", "css-loader", "sass-loader"]
+                loader: sassExtract.extract({
+                    use: ["css-loader", "sass-loader"]
+                })
             },
         ]
     },
@@ -70,11 +85,14 @@ module.exports = {
         // new webpack.ProvidePlugin({
         //     $: 'jquery'
         // }),
+        cssExtract,
+        lessExtract,
+        sassExtract,
     ],
     devServer: {
         contentBase: './dist',
         host: 'localhost',
-        port: 8080,
+        port: 8081,
         compress: true // gzip 压缩 
     }
 };
