@@ -24,6 +24,10 @@ module.exports = {
 
     ],
     devServer: {
-
+        contentBase: './dist',
+        host: 'localhost',
+        port: 8080,
+        // gzip 压缩 
+        compress: true
     }
 };

@@ -95,3 +95,28 @@
         ]
     },
     ```
+
+## 1.3 项目预览 
+
+- 安装
+    ```bash
+    $ npm i webpack-dev-server -D
+    ```
+- 配置
+    ```json
+    "scripts": {
+        "dev": "webpack-dev-server --mode development"
+    },
+    ```
+    ```javascript
+    devServer: {
+        contentBase: './dist',
+        host: 'localhost',
+        port: 8080,
+        // gzip 压缩 
+        compress: true
+    }
+    ```
+- 说明
+    - dev-server 打包生成的文件是存放在内存中的
+    - dev-server 服务器的静态文件提供目录是根据 contentBase 定位，推荐绝对路径
