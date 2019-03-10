@@ -9,3 +9,7 @@ let src = require('./images/color.png');
 let img = new Image();
 img.src = src;
 document.body.appendChild(img);
+
+
+require('./less.less');
+require('./sass.scss');
