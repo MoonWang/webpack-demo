@@ -140,3 +140,20 @@
         })
     ],
     ```
+
+## 1.5 多入口
+
+- 多入口配置
+    ```javascript
+    entry: {
+        index: './src/index.js',
+        base: './src/base.js',
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: 'index.html',
+            chunks: ['index'], // 可以指定需要引入的 chunk ，默认所有
+        })
+    ],
+    ```

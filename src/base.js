@@ -1,0 +1,1 @@
+document.getElementById('base').innerHTML = 'wang';

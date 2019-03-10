@@ -4,7 +4,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     // 入口 默认 './src'
-    entry: './src/index.js',
+    entry: {
+        index: './src/index.js',
+        base: './src/base.js',
+    },
     // 出口 默认 './dist'
     output: {
         // 输出 路径
@@ -31,6 +34,7 @@ module.exports = {
             template: './src/index.html',
             filename: 'index.html',
             title: 'wang', // 可以在模板这种用 htmlWebpackPlugin.options.xx 传参
+            chunks: ['index'], // 可以指定需要引入的 chunk ，默认所有
             hash: true, // 会在引入的 js 里加入查询字符串避免缓存，在 output.filename 是固定字符串的时候有用
             minify: {
                 removeAttributeQuotes: true // 去掉属性的引号，防 xss 攻击？
