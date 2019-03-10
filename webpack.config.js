@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // 入口 默认 './src'
@@ -7,8 +8,9 @@ module.exports = {
     output: {
         // 输出 路径
         path: path.join(__dirname, 'dist'),
-        // 生成文件名，默认 'main.js'
-        filename: 'bundle.js'
+        // 生成文件名
+        // name 是 entry 的名字，此时为默认值 main ; hash 是根据文件内容计算的 hash 值
+        filename: '[name].[hash:8].js'
     },
     module: {
         rules: [
@@ -21,13 +23,21 @@ module.exports = {
         ]
     },
     plugins: [
-
+        // 自动产出 html 文件
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: 'index.html',
+            title: 'wang', // 可以在模板这种用 htmlWebpackPlugin.options.xx 传参
+            hash: true, // 会在引入的 js 里加入查询字符串避免缓存，在 output.filename 是固定字符串的时候有用
+            minify: {
+                removeAttributeQuotes: true // 去掉属性的引号，防 xss 攻击？
+            }
+        })
     ],
     devServer: {
         contentBase: './dist',
         host: 'localhost',
         port: 8080,
-        // gzip 压缩 
-        compress: true
+        compress: true // gzip 压缩 
     }
 };

@@ -96,7 +96,7 @@
     },
     ```
 
-## 1.3 项目预览 
+## 1.3 项目预览 devServer
 
 - 安装
     ```bash
@@ -120,3 +120,15 @@
 - 说明
     - dev-server 打包生成的文件是存放在内存中的
     - dev-server 服务器的静态文件提供目录是根据 contentBase 定位，推荐绝对路径
+
+## 1.4 使用 plugin
+
+> 以 html-webpack-plugin 插件为例
+
+- 安装
+    ```base
+    $ npm i html-webpack-plugin -D
+    ```
+- 配置
+    ```javascript
+    ```
