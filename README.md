@@ -123,12 +123,20 @@
 
 ## 1.4 使用 plugin
 
-> 以 html-webpack-plugin 插件为例
+> html-webpack-plugin 插件用于自动生成 html 文件，并自动引入 js 脚本；clean-webpack-plugin 用于清除指定目录
 
 - 安装
     ```base
     $ npm i html-webpack-plugin -D
+    $ npm i clean-webpack-plugin -D
     ```
 - 配置
     ```javascript
+    plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: 'index.html'
+        })
+    ],
     ```

@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     // 入口 默认 './src'
@@ -23,6 +24,8 @@ module.exports = {
         ]
     },
     plugins: [
+        // 清除指定目录，默认 `output.path` 路径下
+        new CleanWebpackPlugin(),
         // 自动产出 html 文件
         new HtmlWebpackPlugin({
             template: './src/index.html',
