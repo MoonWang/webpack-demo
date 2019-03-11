@@ -103,5 +103,9 @@ module.exports = {
         host: 'localhost',
         port: 8081,
         compress: true // gzip 压缩 
-    }
+    },
+    // devtool: 'source-map'
+    // devtool: 'cheap-module-source-map'
+    // devtool: 'eval-source-map'
+    devtool: 'cheap-module-eval-source-map'
 };

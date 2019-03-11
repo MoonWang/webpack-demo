@@ -1,1 +1,1 @@
-export default text = "babel-text";
+export default "babel-text";

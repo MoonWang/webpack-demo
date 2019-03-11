@@ -94,7 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n// document.getElementById('base').innerHTML = 'wang';\n$('#base').html('$ wang');\n\n//# sourceURL=webpack:///./src/base.js?");
+eval("\n\n// document.getElementById('base').innerHTML = 'wang';\n$('#base').html('$ wang');//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYmFzZS5qcy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9zcmMvYmFzZS5qcz80ZTAzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdiYXNlJykuaW5uZXJIVE1MID0gJ3dhbmcnO1xuJCgnI2Jhc2UnKS5odG1sKCckIHdhbmcnKTsiXSwibWFwcGluZ3MiOiI7O0FBQUE7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/base.js\n");
 
 /***/ })
 

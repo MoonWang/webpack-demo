@@ -280,3 +280,23 @@
     ```javascript
 
     ```
+
+## 1.11 [调试 devtool](https://www.webpackjs.com/configuration/devtool/)
+
+- 设置
+    ```javascript
+    devtool: 'eval-source-map'
+    ```
+- 说明
+    - source-map 
+        - 把映射文件生成到单独的文件，`最完整最慢`
+        - 生成单独 map 调试文件，可以定位到`出错列`
+    - cheap-module-source-map 
+        - 在一个单独的文件中产生一个不带列映射的Map
+        - 生成单独 map 调试文件，体积更小，但只能定位到`出错行`
+    - eval-source-map 
+        - 使用 eval 打包源文件模块，在`同一个文件`中生成完整 sourcemap
+        - 没有生成单独文件
+    - cheap-module-eval-source-map 
+        - sourcemap 和打包后的 JS 同行显示，没有映射列
+        - 没有生成单独文件，只定位到行

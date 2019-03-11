@@ -19,3 +19,5 @@ document.body.appendChild(img);
 console.log(text);
 
 let getText = () => text;
+
+throw Error('test source map')
