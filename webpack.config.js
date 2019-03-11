@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 let cssExtract = new ExtractTextWebpackPlugin('css/css.css');
 // let lessExtract = new ExtractTextWebpackPlugin('css/less.css');
@@ -98,6 +99,7 @@ module.exports = {
         cssExtract,
         // lessExtract,
         // sassExtract,
+        // new UglifyjsWebpackPlugin(),
     ],
     devServer: {
         contentBase: './dist',

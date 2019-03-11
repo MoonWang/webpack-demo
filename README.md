@@ -334,3 +334,8 @@
         ]
     };
     ```
+
+## 1.13 js 压缩
+
+- development 模式下可以通过 UglifyJsPlugin 插件
+- production 模式下默认启用该插件
