@@ -339,3 +339,16 @@
 
 - development 模式下可以通过 UglifyJsPlugin 插件
 - production 模式下默认启用该插件
+
+## 1.14 配置模块别名，简化引用
+
+```javascript
+resolve: {
+    alias: {
+        Utilities: path.resolve(__dirname, 'src/utilities/')
+    },
+    // 自动解析确定的扩展，优先级从前往后
+    extensions: [".js", ".json"]
+}
+```
+
