@@ -1,5 +1,7 @@
 # 一、快速开始
 
+> [webpack 中文文档](https://www.webpackjs.com/configuration/)
+
 ## 1.1 配置并打包
 
 - 本地安装
@@ -114,7 +116,19 @@
         host: 'localhost',
         port: 8080,
         // gzip 压缩 
-        compress: true
+        compress: true,
+        // 请求代理
+        proxy: {
+            // 注意：/api/ 代理时不会被携带，/api 代理时会被携带
+            '/api/': {
+                target: 'http://www.baidu.com/',
+                pathRewrite: {
+                    '^/api': ""
+                },
+                secure: false,
+                changeOrigin: true,
+            }
+        }
     }
     ```
 - 说明
