@@ -272,13 +272,27 @@
         - 回退低版本 
             - npm install -D babel-loader@7 babel-core babel-preset-env babel-preset-stage-0 babel-preset-react
             - 报错：Couldn't find preset "@babel/preset-env" relative to directory "webpack/node_modules/css-loader"
-            - 解决：先暂时注释掉 css 文件的引入 TODO 为什么？
+            - 原因：编译了 node_modules 下的文件
+            - 解决：给 js loader 添加配置 `exclude: /node_modules/`
         - 升级高版本 
             - npm install -D babel-loader @babel/core @babel/preset-env @babel/preset-stage-0 @babel/preset-react
             - 对应的 presets 参数也要修改成 '@babel/react' ，比较繁琐，还是先回退低版本处理
 - 配置
     ```javascript
-
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                use: {
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ["env", "stage-0", "react"]
+                    }
+                },
+                exclude: /node_modules/
+            }
+        ]
+    },
     ```
 
 ## 1.11 [调试 devtool](https://www.webpackjs.com/configuration/devtool/)
@@ -300,3 +314,23 @@
     - cheap-module-eval-source-map 
         - sourcemap 和打包后的 JS 同行显示，没有映射列
         - 没有生成单独文件，只定位到行
+
+## 1.12 css 压缩
+
+> 旧版本的 css-loader 可以通过添加参数 minimize 来实现压缩，v1.0 版本以后已废除。
+> 报错：CSS Loader Invalid Options  —— options should NOT have additional properties
+
+- 安装
+    ```bash
+    $ npm i cssnano -D
+    ```
+- 配置
+    ``` javascript
+    // postcss.config.js
+    module.exports = {
+        plugins: [
+            require('autoprefixer'),
+            require('cssnano')
+        ]
+    };
+    ```

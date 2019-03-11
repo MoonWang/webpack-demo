@@ -5,8 +5,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 let cssExtract = new ExtractTextWebpackPlugin('css/css.css');
-let lessExtract = new ExtractTextWebpackPlugin('css/less.css');
-let sassExtract = new ExtractTextWebpackPlugin('css/sass.css');
+// let lessExtract = new ExtractTextWebpackPlugin('css/less.css');
+// let sassExtract = new ExtractTextWebpackPlugin('css/sass.css');
 
 module.exports = {
     // 入口 默认 './src'
@@ -51,20 +51,20 @@ module.exports = {
             //     test: /\.(html|htm)$/,
             //     use: 'html-withimg-loader'
             // },
-            {
-                test: /\.less$/,
-                // loader: ["style-loader", "css-loader", "less-loader"]
-                loader: lessExtract.extract({
-                    use: ["css-loader", "less-loader"]
-                })
-            },
-            {
-                test: /\.scss$/,
-                // loader: ["style-loader", "css-loader", "sass-loader"]
-                loader: sassExtract.extract({
-                    use: ["css-loader", "sass-loader"]
-                })
-            },
+            // {
+            //     test: /\.less$/,
+            //     // loader: ["style-loader", "css-loader", "less-loader"]
+            //     loader: lessExtract.extract({
+            //         use: ["css-loader", "less-loader"]
+            //     })
+            // },
+            // {
+            //     test: /\.scss$/,
+            //     // loader: ["style-loader", "css-loader", "sass-loader"]
+            //     loader: sassExtract.extract({
+            //         use: ["css-loader", "sass-loader"]
+            //     })
+            // },
             {
                 test: /\.jsx?$/,
                 use: {
@@ -72,7 +72,8 @@ module.exports = {
                     query: {
                         presets: ["env", "stage-0", "react"]
                     }
-                }
+                },
+                exclude: /node_modules/
             }
         ]
     },
@@ -95,8 +96,8 @@ module.exports = {
         //     $: 'jquery'
         // }),
         cssExtract,
-        lessExtract,
-        sassExtract,
+        // lessExtract,
+        // sassExtract,
     ],
     devServer: {
         contentBase: './dist',
