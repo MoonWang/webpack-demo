@@ -93,7 +93,7 @@ module.exports = {
     },
     plugins: [
         // 清除指定目录，默认 `output.path` 路径下
-        new CleanWebpackPlugin(),
+        // new CleanWebpackPlugin(),
         // 自动产出 html 文件
         new HtmlWebpackPlugin({
             template: './src/index.html',
@@ -113,6 +113,11 @@ module.exports = {
         // lessExtract,
         // sassExtract,
         // new UglifyjsWebpackPlugin(),
+        // 使用动态链接库
+        new webpack.DllReferencePlugin({
+            // 配置引入需要用到的配置文件
+            manifest: require(path.join(__dirname, 'dist', 'react.manifest.json')),
+        })
     ],
     devServer: {
         contentBase: './dist',

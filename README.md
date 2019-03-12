@@ -401,3 +401,44 @@ resolve: {
     }
 },
 ```
+
+## 2.1 使用 DLL 动态链接库文件加载框架模块
+
+1. 新建 DLL 打包配置
+
+```javascript
+module.exports = {
+    entry: {
+        // react 模块打包到一个动态连接库
+        react: ['react']
+    },
+    output: {
+        path: path.join(__dirname, 'dist'),
+        filename: '[name]_dll.js', // 输出动态连接库的文件名称
+        libraryTarget: 'var', // 默认 var ，其他看文档
+        library: '_dll_[name]' // libraryTarget 为 var 时，全局变量的名字，其它会从此变量上获取到里面的模块
+    },
+    plugins: [
+        // 用于打包出一个个动态连接库
+        new webpack.DllPlugin({
+            // 该 name 要是 output.library 相同
+            name: '_dll_[name]',
+            // manifest 表示一个描述文件
+            path: path.join(__dirname, 'dist', 'react.manifest.json')
+        })
+    ]
+}
+```
+
+2. 使用动态链接库文件构建
+
+```javascript
+new webpack.DllReferencePlugin({
+    // 配置引入需要用到的配置文件
+    manifest: require(path.join(__dirname, 'dist', 'react.manifest.json')),
+})
+```
+
+顺序：先构建 dll 文件，存在依赖关系
+
+说明：这东西怎么使用才是最佳体验，有待商榷，感受不到优化之美
