@@ -366,3 +366,38 @@ resolve: {
 }
 ```
 
+# 二、常用优化
+
+> 项目较小的时候，优化的意义不大，浪费资源和时间，有时候还会适得其反；当项目打包速度超出忍耐度时再考虑优化。
+
+## 2.1 优化 loader 配置
+
+```javascript
+module:{
+    // 忽略对部分没采用模块化的文件的递归解析处理，下面配置 alias 在用
+    noParse: [/react\.min\.js/],
+    rules:[
+        {
+            test: /\.jsx?$/,
+            // 开启缓存
+            use: ['babel-loader?cacheDirectory'],
+            // 缩小命中范围，只编译需要的目录
+            include: path.resolve(__dirname,'src'),
+            // 设定排除范围，其实这个一定要有，不然可能会造成其他 loader 无法使用（前面的例子）
+            exclude: /node_modules/
+        }
+    ]
+},
+resolve: {
+    // 设置解析时的 modules 包路径，建议用绝对路径，因为相对路径将类似于 Node 查找 'node_modules' 的方式进行查找。
+    // 如果有自定义的包，可以设置多个目录，优先级从前向后
+    modules: [path.resolve(__dirname, 'node_modules')],
+    // 在导入语句没带文件后缀时，Webpack会自动带上后缀后去尝试询问文件是否存在 默认后缀是 extensions: ['.js', '.json']
+    // 后缀列表尽可能小，频率最高的往前方，导出语句里尽可能带上后缀(js之外的建议都写上)
+    extensions: ['js'],
+    // 可以直接查到包的具体位置，此时会直接查找这个，而不再去查找 resolve.modules 指定的目录
+    alias: {
+        'react': path.resolve(__dirname, './node_modules/react/cjs/react.production.min.js')
+    }
+},
+```

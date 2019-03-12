@@ -13,7 +13,7 @@ module.exports = {
     // 入口 默认 './src'
     entry: {
         index: './src/index.js',
-        base: './src/base.js',
+        // base: './src/base.js',
         // jquery: 'jquery'
     },
     // 出口 默认 './dist'
@@ -25,6 +25,8 @@ module.exports = {
         filename: '[name].[hash:8].js'
     },
     module: {
+        // 设置不解析模块
+        noParse: [/react\.min\.js/],
         rules: [
             {
                 // 匹配需要当前 loader 处理的文件
@@ -69,14 +71,25 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 use: {
-                    loader: 'babel-loader',
+                    loader: 'babel-loader?cacheDirectory',
                     query: {
                         presets: ["env", "stage-0", "react"]
                     }
                 },
+                include: path.resolve(__dirname,'src'),
                 exclude: /node_modules/
             }
         ]
+    },
+    resolve: {
+        // 配置别名，用于缩短路径
+        alias: {
+            'react': path.resolve(__dirname, './node_modules/react/cjs/react.production.min.js')
+        },
+        // 自动解析确定的扩展，优先级从前往后
+        // extensions: [".js", ".json"],
+        // 显式声明模块查找目录
+        modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'lib')],
     },
     plugins: [
         // 清除指定目录，默认 `output.path` 路径下
