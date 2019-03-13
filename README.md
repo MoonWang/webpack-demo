@@ -442,3 +442,45 @@ new webpack.DllReferencePlugin({
 顺序：先构建 dll 文件，存在依赖关系
 
 说明：这东西怎么使用才是最佳体验，有待商榷，感受不到优化之美
+
+## 2.3 HappyPack
+
+> Node 单线程，HappyPack 让 webpack 将任务分解成多个子进程并发的执行，子进程处理完后再把结果发送给主进程
+
+- 安装
+    ```bash
+    $ npm i happypack -D
+    ```
+- 使用
+    ```javascript
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                // id 对应下面实例化插件时的 id，一对一创建子进程
+                loader: "happypack/loader?id=css"
+            },
+            {
+                test: /\.jsx?$/,
+                loader: 'happypack/loader?id=jsx',
+                include: path.resolve(__dirname,'src'),
+                exclude: /node_modules/
+            }
+        ]
+    },
+    plugins: [
+        new HappyPack({
+            id: 'css',
+            loaders: ['style-loader', 'css-loader']
+        }),
+        new HappyPack({
+            id: 'jsx',
+            loaders: [{
+                loader: 'babel-loader',
+                query: {
+                    presets: ["env", "stage-0", "react"]
+                }
+            }],
+        }),
+    ]
+    ```

@@ -5,6 +5,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
+const HappyPack = require('happypack');
+
 let cssExtract = new ExtractTextWebpackPlugin('css/css.css');
 // let lessExtract = new ExtractTextWebpackPlugin('css/less.css');
 // let sassExtract = new ExtractTextWebpackPlugin('css/sass.css');
@@ -34,22 +36,23 @@ module.exports = {
                 // 使用的 loader 
                 // loader: ["style-loader", "css-loader"]
                 // extract-text-webpack-plugin 插件需要首先用 css-loader 处理 css 文件
-                loader: cssExtract.extract({
-                    use: ["css-loader", "postcss-loader"]
-                })
+                // loader: cssExtract.extract({
+                //     use: ["css-loader", "postcss-loader"]
+                // })
+                loader: "happypack/loader?id=css"
             },
-            {
-                test: /\.(png|jpg|jpeg|gif|svg|bmp)$/,
-                // use: 'file-loader'
-                use: {
-                    // loader: 'file-loader',
-                    loader: 'url-loader',
-                    options: {
-                        outputPath: 'images/',
-                        limit: 10 * 1024
-                    }
-                }
-            },
+            // {
+            //     test: /\.(png|jpg|jpeg|gif|svg|bmp)$/,
+            //     // use: 'file-loader'
+            //     use: {
+            //         // loader: 'file-loader',
+            //         loader: 'url-loader',
+            //         options: {
+            //             outputPath: 'images/',
+            //             limit: 10 * 1024
+            //         }
+            //     }
+            // },
             // {
             //     test: /\.(html|htm)$/,
             //     use: 'html-withimg-loader'
@@ -70,12 +73,13 @@ module.exports = {
             // },
             {
                 test: /\.jsx?$/,
-                use: {
-                    loader: 'babel-loader?cacheDirectory',
-                    query: {
-                        presets: ["env", "stage-0", "react"]
-                    }
-                },
+                // use: {
+                //     loader: 'babel-loader?cacheDirectory',
+                //     query: {
+                //         presets: ["env", "stage-0", "react"]
+                //     }
+                // },
+                loader: 'happypack/loader?id=jsx',
                 include: path.resolve(__dirname,'src'),
                 exclude: /node_modules/
             }
@@ -117,7 +121,21 @@ module.exports = {
         new webpack.DllReferencePlugin({
             // 配置引入需要用到的配置文件
             manifest: require(path.join(__dirname, 'dist', 'react.manifest.json')),
-        })
+        }),
+        new HappyPack({
+            id: 'css',
+            loaders: ['style-loader', 'css-loader']
+        }),
+        new HappyPack({
+            id: 'jsx',
+            loaders: [{
+                loader: 'babel-loader',
+                query: {
+                    // cacheDirectory,
+                    presets: ["env", "stage-0", "react"]
+                }
+            }],
+        }),
     ],
     devServer: {
         contentBase: './dist',
