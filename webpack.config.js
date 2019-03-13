@@ -7,6 +7,8 @@ const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 const HappyPack = require('happypack');
 
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+
 let cssExtract = new ExtractTextWebpackPlugin('css/css.css');
 // let lessExtract = new ExtractTextWebpackPlugin('css/less.css');
 // let sassExtract = new ExtractTextWebpackPlugin('css/sass.css');
@@ -136,6 +138,22 @@ module.exports = {
                 }
             }],
         }),
+
+        new ParallelUglifyPlugin({
+            workerCount: 3, // 开启几个子进程去并发的执行压缩，默认是当前运行电脑的 CPU 核数减去1
+            uglifyJS: {
+                output: {
+                    beautify: false, //不需要格式化
+                    comments: false, //不保留注释
+                },
+                compress: {
+                    warnings: false, // 在 UglifyJs 删除没有用到的代码时不输出警告
+                    drop_console: true, // 删除所有的 `console` 语句，可以兼容 ie 浏览器
+                    collapse_vars: true, // 内嵌定义了但是只用到一次的变量
+                    reduce_vars: true, // 提取出出现多次但是没有定义成变量去引用的静态值
+                }
+            }
+        })
     ],
     devServer: {
         contentBase: './dist',
