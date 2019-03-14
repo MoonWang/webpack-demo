@@ -16,8 +16,9 @@ let cssExtract = new ExtractTextWebpackPlugin('css/css.css');
 module.exports = {
     // 入口 默认 './src'
     entry: {
-        index: './src/index.js',
+        // index: './src/index.js',
         // base: './src/base.js',
+        main: './src/main.js',
         // jquery: 'jquery'
     },
     // 出口 默认 './dist'
@@ -76,15 +77,15 @@ module.exports = {
             // },
             {
                 test: /\.jsx?$/,
-                // use: {
-                //     loader: 'babel-loader?cacheDirectory',
-                //     query: {
-                //         presets: ["env", "stage-0", "react"]
-                //     }
-                // },
-                loader: 'happypack/loader?id=jsx',
-                include: path.resolve(__dirname,'src'),
-                exclude: /node_modules/
+                use: {
+                    loader: 'babel-loader?cacheDirectory',
+                    query: {
+                        presets: [["env", {modules: false}], "stage-0", "react"]
+                    }
+                },
+                // loader: 'happypack/loader?id=jsx',
+                // include: path.resolve(__dirname,'src'),
+                // exclude: /node_modules/
             }
         ]
     },
@@ -129,16 +130,16 @@ module.exports = {
         //     id: 'css',
         //     loaders: ['style-loader', 'css-loader']
         // }),
-        new HappyPack({
-            id: 'jsx',
-            loaders: [{
-                loader: 'babel-loader',
-                query: {
-                    // cacheDirectory,
-                    presets: ["env", "stage-0", "react"]
-                }
-            }],
-        }),
+        // new HappyPack({
+        //     id: 'jsx',
+        //     loaders: [{
+        //         loader: 'babel-loader',
+        //         query: {
+        //             // cacheDirectory,
+        //             presets: [["env", {modules: false}], "stage-0", "react"]
+        //         }
+        //     }],
+        // }),
 
         // new ParallelUglifyPlugin({
         //     workerCount: 3, // 开启几个子进程去并发的执行压缩，默认是当前运行电脑的 CPU 核数减去1
@@ -168,5 +169,5 @@ module.exports = {
     // devtool: 'source-map'
     // devtool: 'cheap-module-source-map'
     // devtool: 'eval-source-map'
-    devtool: 'cheap-module-eval-source-map'
+    // devtool: 'cheap-module-eval-source-map'
 };

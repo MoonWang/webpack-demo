@@ -514,4 +514,43 @@ new webpack.DllReferencePlugin({
 
 ## 2.5 [模块热替换](https://www.webpackjs.com/guides/hot-module-replacement/)
 
-> 
+- 配置
+    ```javascript
+    devServer: {
+        hot: true,
+    },
+    plugins: [
+        new webpack.NamedModulesPlugin(),
+        // 需要该插件才能完全启用 HMR ，如果是 --hot 方式启动 webpack 会自动添加，此处使用的配置声明，所以要加上
+        new webpack.HotModuleReplacementPlugin(), 
+    ]
+    ```
+- 定义接口
+    ```javascript
+    if (module.hot) {
+        // 如果检测到了 index.js 模块更新，则会调用后面的回调函数
+        module.hot.accept('./index.js', function () {
+            console.log('accept index.js');
+            // do something
+        });
+    }
+    ```
+
+## 2.6 [Tree Shaking](https://www.webpackjs.com/guides/tree-shaking/)
+
+- 配置
+    ```javascript
+    // 修改 .babelrc 文件
+    {
+        "presets": [ 
+            ["env", { "modules": false }]
+        ]
+    }
+    ```
+- 只作用于符合` ES6 模块系统`规范的模块
+    - 即使用 import 导入 和 export 导出
+- 为了方便查看哪些模块有用，哪些没用，可以在启动命令中加入下面参数
+    - --display-used-exports
+- 开发的时候并没有效果，需要在生产模式下才有用(代码压缩)
+    - 用 mode: "production" （v4版本）
+    - 注意：`不要开启 devtool`

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode development",
+    "build": "webpack --display-used-exports --mode production",
     "build-react": "webpack --config webpack.react.config.js --mode development",
     "dev": "webpack-dev-server --open --mode development"
   },
