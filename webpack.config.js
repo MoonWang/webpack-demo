@@ -26,7 +26,8 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         // 生成文件名
         // name 是 entry 的名字，此时为默认值 main ; hash 是根据文件内容计算的 hash 值
-        filename: '[name].[hash:8].js'
+        filename: '[name].[hash:8].js',
+        // publicPath: '//cdn.com.cn/'
     },
     module: {
         // 设置不解析模块
@@ -36,25 +37,25 @@ module.exports = {
                 // 匹配需要当前 loader 处理的文件
                 test: /\.css$/,
                 // 使用的 loader 
-                // loader: ["style-loader", "css-loader"]
+                use: ["style-loader", "css-loader"]
                 // extract-text-webpack-plugin 插件需要首先用 css-loader 处理 css 文件
                 // loader: cssExtract.extract({
                 //     use: ["css-loader", "postcss-loader"]
                 // })
-                loader: "happypack/loader?id=css"
+                // loader: "happypack/loader?id=css"
             },
-            // {
-            //     test: /\.(png|jpg|jpeg|gif|svg|bmp)$/,
-            //     // use: 'file-loader'
-            //     use: {
-            //         // loader: 'file-loader',
-            //         loader: 'url-loader',
-            //         options: {
-            //             outputPath: 'images/',
-            //             limit: 10 * 1024
-            //         }
-            //     }
-            // },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|bmp)$/,
+                // use: 'file-loader'
+                use: {
+                    // loader: 'file-loader',
+                    loader: 'url-loader',
+                    options: {
+                        outputPath: 'images/',
+                        limit: 10 * 1024
+                    }
+                }
+            },
             // {
             //     test: /\.(html|htm)$/,
             //     use: 'html-withimg-loader'
@@ -99,7 +100,7 @@ module.exports = {
     },
     plugins: [
         // 清除指定目录，默认 `output.path` 路径下
-        // new CleanWebpackPlugin(),
+        new CleanWebpackPlugin(),
         // 自动产出 html 文件
         new HtmlWebpackPlugin({
             template: './src/index.html',
@@ -120,14 +121,14 @@ module.exports = {
         // sassExtract,
         // new UglifyjsWebpackPlugin(),
         // 使用动态链接库
-        new webpack.DllReferencePlugin({
-            // 配置引入需要用到的配置文件
-            manifest: require(path.join(__dirname, 'dist', 'react.manifest.json')),
-        }),
-        new HappyPack({
-            id: 'css',
-            loaders: ['style-loader', 'css-loader']
-        }),
+        // new webpack.DllReferencePlugin({
+        //     // 配置引入需要用到的配置文件
+        //     manifest: require(path.join(__dirname, 'dist', 'react.manifest.json')),
+        // }),
+        // new HappyPack({
+        //     id: 'css',
+        //     loaders: ['style-loader', 'css-loader']
+        // }),
         new HappyPack({
             id: 'jsx',
             loaders: [{
@@ -139,26 +140,29 @@ module.exports = {
             }],
         }),
 
-        new ParallelUglifyPlugin({
-            workerCount: 3, // 开启几个子进程去并发的执行压缩，默认是当前运行电脑的 CPU 核数减去1
-            uglifyJS: {
-                output: {
-                    beautify: false, //不需要格式化
-                    comments: false, //不保留注释
-                },
-                compress: {
-                    warnings: false, // 在 UglifyJs 删除没有用到的代码时不输出警告
-                    drop_console: true, // 删除所有的 `console` 语句，可以兼容 ie 浏览器
-                    collapse_vars: true, // 内嵌定义了但是只用到一次的变量
-                    reduce_vars: true, // 提取出出现多次但是没有定义成变量去引用的静态值
-                }
-            }
-        })
+        // new ParallelUglifyPlugin({
+        //     workerCount: 3, // 开启几个子进程去并发的执行压缩，默认是当前运行电脑的 CPU 核数减去1
+        //     uglifyJS: {
+        //         output: {
+        //             beautify: false, //不需要格式化
+        //             comments: false, //不保留注释
+        //         },
+        //         compress: {
+        //             warnings: false, // 在 UglifyJs 删除没有用到的代码时不输出警告
+        //             drop_console: true, // 删除所有的 `console` 语句，可以兼容 ie 浏览器
+        //             collapse_vars: true, // 内嵌定义了但是只用到一次的变量
+        //             reduce_vars: true, // 提取出出现多次但是没有定义成变量去引用的静态值
+        //         }
+        //     }
+        // }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
     ],
     devServer: {
+        hot: true,
         contentBase: './dist',
         host: 'localhost',
-        port: 8081,
+        port: 8084,
         compress: true // gzip 压缩 
     },
     // devtool: 'source-map'

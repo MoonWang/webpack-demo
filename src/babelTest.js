@@ -1,1 +1,1 @@
-export default "babel-text";
+export default "babel-text123231";

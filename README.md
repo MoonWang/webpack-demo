@@ -511,3 +511,7 @@ new webpack.DllReferencePlugin({
         }
     })
     ```
+
+## 2.5 [模块热替换](https://www.webpackjs.com/guides/hot-module-replacement/)
+
+> 
