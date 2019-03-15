@@ -112,7 +112,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "fbedf8eac9f113b519f3";
+/******/ 	var hotCurrentHash = "d4496e874d003eba87eb";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -756,7 +756,7 @@
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		"pageC": 0
+/******/ 		"pageB": 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -853,22 +853,22 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./src/pageC.js","commons~pageA~pageB~pageC","commons~pageB~pageC"]);
+/******/ 	deferredModules.push(["./src/pageB.js","vendor","common"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/pageC.js":
+/***/ "./src/pageB.js":
 /*!**********************!*\
-  !*** ./src/pageC.js ***!
+  !*** ./src/pageB.js ***!
   \**********************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_utils2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/utils2 */ \"./src/utils/utils2.js\");\n/* harmony import */ var _utils_utils2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_utils_utils2__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _utils_utils3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/utils3 */ \"./src/utils/utils3.js\");\n/* harmony import */ var _utils_utils3__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_utils_utils3__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n//# sourceURL=webpack:///./src/pageC.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_utils2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/utils2 */ \"./src/utils/utils2.js\");\n/* harmony import */ var _utils_utils2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_utils_utils2__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _utils_utils3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/utils3 */ \"./src/utils/utils3.js\");\n/* harmony import */ var _utils_utils3__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_utils_utils3__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"./node_modules/react/cjs/react.production.min.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\n\n//# sourceURL=webpack:///./src/pageB.js?");
 
 /***/ })
 

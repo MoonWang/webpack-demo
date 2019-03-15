@@ -560,6 +560,27 @@ new webpack.DllReferencePlugin({
 
 > 旧版的 CommonsChunkPlugin 已经废弃
 
-```
-
+```javascript
+optimization: {
+    splitChunks: {
+        cacheGroups: {
+            // 不同页面之间的公用模块
+            commons: {
+                name: 'common', // 默认自动生成， boolean: true | function (module, chunks, cacheGroupKey) | string
+                chunks: "initial", // 表示将选择哪些块进行优化，可设为 all、async、initial
+                minChunks: 2, // 最少有2个模块中复用
+                maxInitialRequests: 5,
+                minSize: 0 
+            },
+            // 第三方模块
+            vendor: {
+                test: /node_modules/, // 控制此缓存组选择的模块，默认选择所有模块
+                chunks: "initial",
+                name: "vendor",
+                priority: 10, // 优先级，默认-10
+                enforce: true
+            }
+        }
+    }
+},
 ```
