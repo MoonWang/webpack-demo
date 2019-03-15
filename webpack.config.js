@@ -9,6 +9,8 @@ const HappyPack = require('happypack');
 
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 
+const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin');
+
 let cssExtract = new ExtractTextWebpackPlugin('css/css.css');
 // let lessExtract = new ExtractTextWebpackPlugin('css/less.css');
 // let sassExtract = new ExtractTextWebpackPlugin('css/sass.css');
@@ -18,11 +20,11 @@ module.exports = {
     entry: {
         // index: './src/index.js',
         // base: './src/base.js',
-        // main: './src/main.js',
+        main: './src/main.js',
         // jquery: 'jquery'
-        pageA: './src/pageA',
-        pageB: './src/pageB',
-        pageC: './src/pageC',
+        // pageA: './src/pageA',
+        // pageB: './src/pageB',
+        // pageC: './src/pageC',
     },
     // 出口 默认 './dist'
     output: {
@@ -123,6 +125,8 @@ module.exports = {
         // extensions: [".js", ".json"],
         // 显式声明模块查找目录
         modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'lib')],
+        // 针对 Npm 中的第三方模块优先采用 jsnext:main 中指向的 ES6 模块化语法的文件
+        mainFields: ['jsnext:main', 'browser', 'main']
     },
     plugins: [
         // 清除指定目录，默认 `output.path` 路径下
@@ -183,6 +187,8 @@ module.exports = {
         // }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        // 开启 Scope Hoisting
+        new ModuleConcatenationPlugin(),
     ],
     devServer: {
         hot: true,

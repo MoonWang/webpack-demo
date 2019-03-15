@@ -1,53 +1,4 @@
 /******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	function webpackJsonpCallback(data) {
-/******/ 		var chunkIds = data[0];
-/******/ 		var moreModules = data[1];
-/******/ 		var executeModules = data[2];
-/******/
-/******/ 		// add "moreModules" to the modules object,
-/******/ 		// then flag all "chunkIds" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, resolves = [];
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId]) {
-/******/ 				resolves.push(installedChunks[chunkId][0]);
-/******/ 			}
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-/******/ 				modules[moduleId] = moreModules[moduleId];
-/******/ 			}
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
-/******/
-/******/ 		while(resolves.length) {
-/******/ 			resolves.shift()();
-/******/ 		}
-/******/
-/******/ 		// add entry modules from loaded chunk to deferred list
-/******/ 		deferredModules.push.apply(deferredModules, executeModules || []);
-/******/
-/******/ 		// run deferred modules when all chunks ready
-/******/ 		return checkDeferredModules();
-/******/ 	};
-/******/ 	function checkDeferredModules() {
-/******/ 		var result;
-/******/ 		for(var i = 0; i < deferredModules.length; i++) {
-/******/ 			var deferredModule = deferredModules[i];
-/******/ 			var fulfilled = true;
-/******/ 			for(var j = 1; j < deferredModule.length; j++) {
-/******/ 				var depId = deferredModule[j];
-/******/ 				if(installedChunks[depId] !== 0) fulfilled = false;
-/******/ 			}
-/******/ 			if(fulfilled) {
-/******/ 				deferredModules.splice(i--, 1);
-/******/ 				result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
-/******/ 			}
-/******/ 		}
-/******/ 		return result;
-/******/ 	}
 /******/ 	function hotDisposeChunk(chunkId) {
 /******/ 		delete installedChunks[chunkId];
 /******/ 	}
@@ -112,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "d4496e874d003eba87eb";
+/******/ 	var hotCurrentHash = "930663dc431968523904";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -307,7 +258,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			for(var chunkId in installedChunks)
+/******/ 			var chunkId = "main";
 /******/ 			// eslint-disable-next-line no-lone-blocks
 /******/ 			{
 /******/ 				/*globals chunkId */
@@ -752,15 +703,6 @@
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
-/******/ 	// object to store loaded and loading chunks
-/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 	// Promise = chunk loading, 0 = chunk loaded
-/******/ 	var installedChunks = {
-/******/ 		"pageA": 0
-/******/ 	};
-/******/
-/******/ 	var deferredModules = [];
-/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/
@@ -844,42 +786,22 @@
 /******/ 	// __webpack_hash__
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
-/******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
-/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
-/******/ 	jsonpArray.push = webpackJsonpCallback;
-/******/ 	jsonpArray = jsonpArray.slice();
-/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
-/******/ 	var parentJsonpFunction = oldJsonpFunction;
 /******/
-/******/
-/******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./src/pageA.js","common"]);
-/******/ 	// run deferred modules when ready
-/******/ 	return checkDeferredModules();
+/******/ 	// Load entry module and return exports
+/******/ 	return hotCreateRequire("./src/main.js")(__webpack_require__.s = "./src/main.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/pageA.js":
-/*!**********************!*\
-  !*** ./src/pageA.js ***!
-  \**********************/
+/***/ "./src/main.js":
+/*!*********************************!*\
+  !*** ./src/main.js + 1 modules ***!
+  \*********************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_utils1__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/utils1 */ \"./src/utils/utils1.js\");\n/* harmony import */ var _utils_utils1__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_utils_utils1__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _utils_utils2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/utils2 */ \"./src/utils/utils2.js\");\n/* harmony import */ var _utils_utils2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_utils_utils2__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n//# sourceURL=webpack:///./src/pageA.js?");
-
-/***/ }),
-
-/***/ "./src/utils/utils1.js":
-/*!*****************************!*\
-  !*** ./src/utils/utils1.js ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("console.log(1);\n\n//# sourceURL=webpack:///./src/utils/utils1.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n\n// CONCATENATED MODULE: ./src/c.js\n/* harmony default export */ var c = ('moon');\n// CONCATENATED MODULE: ./src/main.js\n// import { get1, get2 } from './a';\n// import { get5 } from './b';\n\n// console.log(get1(), get5());\n\n\n\n//# sourceURL=webpack:///./src/main.js_+_1_modules?");
 
 /***/ })
 

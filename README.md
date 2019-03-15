@@ -584,3 +584,32 @@ optimization: {
     }
 },
 ```
+
+## 2.8 Scope Hoisting 作用域提升 
+
+> webpack3 出现
+
+- 原理：
+    - 分析模块间的依赖关系，尽可能将被打散的模块合并到一个函数中（内联模块 CONCATENATED MODULE ）
+    - 前提是不能造成代码冗余，因此只有被引用了一次的模块才能被合并
+    - 且依赖于 `ES6 模块化`编写的代码
+- 意义：
+    - 代码体积更小，因为函数声明语句会产生大量代码(webpack 生成的)
+    - 代码在运行时因为创建的函数作用域更少了，内存开销也随之变小
+- 配置
+    ```javascript
+    const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin');
+    module.exports = {
+        resolve: {
+            // 针对 Npm 中的第三方模块优先采用 jsnext:main 中指向的 ES6 模块化语法的文件
+            mainFields: ['jsnext:main', 'browser', 'main']
+        },
+        plugins: [
+            // 开启 Scope Hoisting
+            new ModuleConcatenationPlugin(),
+        ]
+    };
+    ```
+- 帮助
+    - 使用 --display-optimization-bailout 参数用于查看效果
+    - 提示信息：ModuleConcatenation bailout: Module is an entry point
