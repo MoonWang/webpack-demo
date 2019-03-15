@@ -554,3 +554,12 @@ new webpack.DllReferencePlugin({
 - 开发的时候并没有效果，需要在生产模式下才有用(代码压缩)
     - 用 mode: "production" （v4版本）
     - 注意：`不要开启 devtool`
+
+
+## 2.7 [提取公共代码](https://www.webpackjs.com/plugins/split-chunks-plugin/)
+
+> 旧版的 CommonsChunkPlugin 已经废弃
+
+```
+
+```

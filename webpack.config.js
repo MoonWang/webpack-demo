@@ -18,8 +18,11 @@ module.exports = {
     entry: {
         // index: './src/index.js',
         // base: './src/base.js',
-        main: './src/main.js',
+        // main: './src/main.js',
         // jquery: 'jquery'
+        pageA: './src/pageA',
+        pageB: './src/pageB',
+        pageC: './src/pageC',
     },
     // 出口 默认 './dist'
     output: {
@@ -29,6 +32,25 @@ module.exports = {
         // name 是 entry 的名字，此时为默认值 main ; hash 是根据文件内容计算的 hash 值
         filename: '[name].[hash:8].js',
         // publicPath: '//cdn.com.cn/'
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    chunks: "initial",
+                    minChunks: 2,
+                    maxInitialRequests: 5, // The default limit is too small to showcase the effect
+                    minSize: 0 // This is example is too small to create commons chunks
+                },
+                vendor: {
+                    test: /node_modules/,
+                    chunks: "initial",
+                    name: "vendor",
+                    priority: 10,
+                    enforce: true
+                }
+            }
+        }
     },
     module: {
         // 设置不解析模块
@@ -107,7 +129,7 @@ module.exports = {
             template: './src/index.html',
             filename: 'index.html',
             title: 'wang', // 可以在模板这种用 htmlWebpackPlugin.options.xx 传参
-            chunks: ['index'], // 可以指定需要引入的 chunk ，默认所有
+            // chunks: ['index'], // 可以指定需要引入的 chunk ，默认所有
             hash: true, // 会在引入的 js 里加入查询字符串避免缓存，在 output.filename 是固定字符串的时候有用
             minify: {
                 removeAttributeQuotes: true // 去掉属性的引号，防 xss 攻击？
