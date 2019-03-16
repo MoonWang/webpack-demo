@@ -613,3 +613,40 @@ optimization: {
 - 帮助
     - 使用 --display-optimization-bailout 参数用于查看效果
     - 提示信息：ModuleConcatenation bailout: Module is an entry point
+
+## 2.9 动态导入（按需加载、懒加载）
+
+### 功能解释
+
+- **import(*)** 语法：webpack 内置支持，import 异步加载模块是 ES7 语法
+- webpack 遇到 import(/* webpackChunkName: "pageA" */ "./pageA") 语句时
+    1. 以 ./pageA.js 为入口重新生成一个 chunk
+    2. 当代码执行到 import 语句时采取加载由 chunk 对应生成的文件
+    3. import 返回一个 promise，当文件加载成功时，可以在 then 这中获取 pagea.js 导出的内容
+- 补充：
+    - webpack4 不需要做任何配置，可以直接使用
+    - webpack3 
+        1. 需要插件支持 babel-plugin-syntax-dynamic-import 语法动态引入（配置 .babelrc 中的 plugins）
+        2. 如果需要命名 chunk (默认是用id) ，则在注释声明以外还需要定义 output.chunkname
+
+### 使用案例
+
+```javascript
+// 需要一个触发时机，可以是用户交互事件，也可以是定时器
+setTimeout(() => {
+    // 这里 a.js 会打包成一个 chunk ，默认用 id 命名，如果添加下面注释，会用 pageA 命名
+    // 打包后，只有 a.js 的代码是一个单独 chunk，下面的代码都会打包到入口文件，执行也是在入口文件中执行，所以重复 import 只会生成一个 chunk
+    // import() 方法会返回一个 promise ，可以拿到整个模块然后执行后续处理操作，所以重复 import 也只会触发一次加载
+    import(/* webpackChunkName: "pageA" */ "./a").then(a => {
+        console.log(a.get1());
+    });
+    // 编译后
+    __webpack_require__.e(/*! import() | pageA */ "pageA").then(__webpack_require__.bind(null, /*! ./a */ "./src/a.js")).then(function (a) {
+        console.log(a.get1());
+    });
+}, 5000)
+```
+
+### 编译后代码分析
+
+见 /bundle 目录

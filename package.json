@@ -8,6 +8,7 @@
     "build-scope": "webpack --display-optimization-bailout --mode development",
     "build-tree": "webpack --display-used-exports --mode production",
     "build-react": "webpack --config webpack.react.config.js --mode development",
+    "build-import": "webpack --config webpack.import.config.js --mode development",
     "dev": "webpack-dev-server --open --mode development"
   },
   "repository": {
