@@ -9,6 +9,7 @@
     "build-tree": "webpack --display-used-exports --mode production",
     "build-react": "webpack --config webpack.react.config.js --mode development",
     "build-import": "webpack --config webpack.import.config.js --mode development",
+    "build-extract": "webpack --config webpack.extract.config.js --mode development",
     "dev": "webpack-dev-server --open --mode development"
   },
   "repository": {
@@ -52,7 +53,9 @@
     "webpack-parallel-uglify-plugin": "^1.1.0"
   },
   "dependencies": {
+    "babel-plugin-extract": "^1.0.0",
     "jquery": "^3.3.1",
+    "loadash": "^1.0.0",
     "react": "^16.8.4"
   }
 }

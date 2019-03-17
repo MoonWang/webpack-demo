@@ -3,4 +3,6 @@
 
 // console.log(get1(), get5());
 
-import c from './c';
+// import c from './c';
+
+import { flatten, concat } from 'lodash';
