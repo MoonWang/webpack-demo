@@ -1,0 +1,18 @@
+[
+    {
+        "type": "Directory",
+        "name": "/Users/wangyuegong/store2/webpack/node_modules/webpack-cli",
+        "parent_id": null,
+        "workspaceRoot": "/Users/wangyuegong/store2/webpack",
+        "workspacePath": "node_modules/webpack-cli",
+        "id": "TZXQSrKMIP4gauly"
+    },
+    {
+        "type": "Directory",
+        "name": "/Users/wangyuegong/store2/webpack/node_modules/webpack",
+        "parent_id": null,
+        "workspaceRoot": "/Users/wangyuegong/store2/webpack",
+        "workspacePath": "node_modules/webpack",
+        "id": "X8EpTgY4xZjtI7kS"
+    }
+]

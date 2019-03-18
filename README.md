@@ -650,3 +650,10 @@ setTimeout(() => {
 ### 编译后代码分析
 
 见 /bundle 目录
+
+
+# 三、调试 webpack 源码
+
+- 安装 favorites 插件，可以收藏、快捷查看源码文件
+    - 收藏 webpack、webpack-cli 文件夹
+- node 执行根目录下 vscode-debugger.js 文件
