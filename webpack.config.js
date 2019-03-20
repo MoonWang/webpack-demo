@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -26,7 +27,23 @@ module.exports = {
             {
                 test: /\.less/,
                 loader: ['style-loader', 'less-loader']
+            },
+            {
+                test: /\.html/,
+                use: {
+                    loader: 'html-layout-loader',
+                    options: {
+                        layout: path.resolve(__dirname, 'src_l', 'layout.html'),
+                        placeholder: '{{__content__}}'
+                    }
+                }
             }
         ]
     },
+    plugins: [
+        new htmlWebpackPlugin({
+            template: './src_l/pageA.html',
+            filename: 'pageA.html'
+        })
+    ]
 };

@@ -56,6 +56,8 @@
     "babel-plugin-extract": "^1.0.0",
     "jquery": "^3.3.1",
     "loadash": "^1.0.0",
-    "react": "^16.8.4"
+    "loader-utils": "^1.2.3",
+    "react": "^16.8.4",
+    "schema-utils": "^1.0.0"
   }
 }
