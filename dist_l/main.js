@@ -94,18 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _text__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./text */ \"./src_l/text.js\");\n/* harmony import */ var _main_less__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main.less */ \"./src_l/main.less\");\n/* harmony import */ var _main_less__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_main_less__WEBPACK_IMPORTED_MODULE_1__);\n\n\nconsole.log(test);\n\n\n\n//# sourceURL=webpack:///./src_l/main.js?");
-
-/***/ }),
-
-/***/ "./src_l/main.less":
-/*!*************************!*\
-  !*** ./src_l/main.less ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("\n        let style = document.createElement('style');\n        style.innerHTML = \"body {\\n  color: red;\\n}\\n\";\n        document.head.appendChild(style);\n    \n\n//# sourceURL=webpack:///./src_l/main.less?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _text__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./text */ \"./src_l/text.js\");\n\n\nconsole.log(_text__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n\n// import './main.less';\n\n//# sourceURL=webpack:///./src_l/main.js?");
 
 /***/ }),
 

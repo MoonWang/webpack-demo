@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const htmlWebpackPlugin = require('html-webpack-plugin')
+const htmlWebpackPlugin = require('html-webpack-plugin');
+const InlinePlugin = require('./plugins/inline-plugin');
 
 module.exports = {
     entry: {
@@ -44,6 +45,7 @@ module.exports = {
         new htmlWebpackPlugin({
             template: './src_l/pageA.html',
             filename: 'pageA.html'
-        })
+        }),
+        new InlinePlugin()
     ]
 };

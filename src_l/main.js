@@ -1,5 +1,5 @@
 import text from './text';
 
-console.log(test);
+console.log(text);
 
-import './main.less';
+// import './main.less';
